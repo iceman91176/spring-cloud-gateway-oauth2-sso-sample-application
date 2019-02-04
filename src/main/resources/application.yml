@@ -3,18 +3,18 @@ spring:
     oauth2:
       client:
         registration:
-          example:
+          delta:
             client-id: yours-client-id
             client-secret: yours-client-secret
             authorization-grant-type: authorization_code
             redirect-uri-template: '{baseUrl}/login/oauth2/code/{registrationId}'
             clientName: gateway
         provider:
-          example:
-            authorization-uri: http://your-auth.service/oauth/authorize
-            token-uri: https://your-auth.service/oauth/token
-            jwt-key-uri: http://your-auth.service/oauth/token_key #optional you can also provide public key as property value in this application.yml but in this case you should override ReactiveJwtDecoder injection in JwtConfiguration.class
-            userNameAttribute: user_name
+          delta:
+            authorization-uri: https://auth.witcom-dev.services/auth/realms/demo-realm/protocol/openid-connect/auth
+            token-uri: https://auth.witcom-dev.services/auth/realms/demo-realm/protocol/openid-connect/token
+            jwt-key-uri: https://auth.witcom-dev.services/auth/realms/demo-realm/protocol/openid-connect/certs #optional you can also provide public key as property value in this application.yml but in this case you should override ReactiveJwtDecoder injection in JwtConfiguration.class
+            userNameAttribute: preferred_username
   cloud:
     gateway:
       routes:

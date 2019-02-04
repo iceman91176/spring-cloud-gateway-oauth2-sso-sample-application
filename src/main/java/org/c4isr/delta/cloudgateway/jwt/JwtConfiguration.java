@@ -38,11 +38,14 @@ public class JwtConfiguration {
 
     @Bean
     ReactiveJwtDecoder jwtDecoder() throws IOException, InvalidKeyException {
+    	return new NimbusReactiveJwtDecoder(keyUri);
+    	/*
         return WebClient.create().get().uri(URI.create(keyUri))
                 .exchange()
                 .flatMap(clientResponse -> clientResponse.bodyToMono(JwtPublicKey.class))
                 .map(jwtPublicKey -> parsePublicKey(jwtPublicKey.getValue()))
                 .map(NimbusReactiveJwtDecoder::new).block();
+                */
     }
 
 
